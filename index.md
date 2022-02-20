@@ -1,9 +1,19 @@
 ---
 title:  ORMGP Interpolants
-author: ORMGP
+author: M. Marchildon
 date:   2022-02-22
 output: html_document
 ---
+
+
+
+
+## Introduction
+* Getting data to speak to each other
+* information content
+
+
+
 
 
 ## Sources
@@ -11,12 +21,45 @@ output: html_document
 * WSC
 * CAPA
 * YCDB
+* SNODAS
+
+### Partners
+* TRCA
+* CVC
+* CLOCA
+* York Region
+
+
 
 ## Processes
-* cron
-* YCDB
+
+### Tools
+* Python
 * FEWS
+* MSSQL
+
+### Web scraping
+* cron
+* FEWS
+
+### storage
+* FEWS
+* YCDB
+
+### Interpolation
+* **[Barometry](/interpolants/interpolation/barometry.html)**
 * snowmelt
+
+### Modelling
+* water budget model
+* snowmelt
+
+
 
 ## Products
 * 6hr, 24hr
+* mean min max temp
+* atmospheric Pressure
+* rainfall
+* snowfall
+* snowmelt
