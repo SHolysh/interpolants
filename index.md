@@ -16,19 +16,8 @@ output: html_document
 
 
 
-## Sources
-* EC
-* WSC
-* CAPA
-* YCDB
-* SNODAS
-
-### Partners
-* TRCA
-* CVC
-* CLOCA
-* York Region
-
+## Data Sources
+* **[Sources](/interpolants/sources/sources.html)**
 
 
 ## Processes

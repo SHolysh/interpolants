@@ -1,6 +1,6 @@
 ---
 title: Barometric interpolation
-author: M. Marchildon
+author: M.Marchildon
 date: 2021-09-03
 output: html_document
 ---
