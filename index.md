@@ -10,10 +10,10 @@ output: html_document
 
 # Introduction
 There's a need for an introduction here, highlighting the need to:
-    * coordinate disparate datasets so that correlation among environmental phenomena can be investigated
-    * data are sourced primarily from open datasets and are ingested into our database
-    * by virtue of being in our database, web applications allowing users to analyze the data become available
-    * this is a system of delivering information needed for water resources and planning.
+* coordinate disparate datasets so that correlation among environmental phenomena can be investigated
+* data are sourced primarily from open datasets and are ingested into our database
+* by virtue of being in our database, web applications allowing users to analyze the data become available
+* this is a system of delivering information needed for water resources and planning.
 
 
 
