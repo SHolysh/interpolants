@@ -1,12 +1,12 @@
 ---
 title:  ORMGP Interpolants
-author: M.Marchildon
+author: Oak Ridges Moraine Groundwater Program
 date:   2022-02-22
 output: html_document
 ---
 
-
-
+* TOC
+{:toc}
 
 # Introduction
 There's a need for an introduction here, highlighting the need to:
@@ -42,11 +42,13 @@ There's a need for an introduction here, highlighting the need to:
 * **[Water Table](owrc.github.io/watertable/)**
 * **[Barometry](/interpolants/interpolation/barometry.html)**
 * snowmelt
-* impervious cover
-* canopy cover
+* Land use
+    * **[impervious cover](/interpolants/interpolation/landuse.html)**
+    * canopy cover
 * **Drainage and Topology**
     * Overland
     * **[Watercourses](/interpolants/interpolation/watercourses.html)**
+    * **[Subwatersheds](/interpolants/interpolation/subwatershed.html)**
 
 
 

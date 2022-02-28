@@ -1,5 +1,5 @@
 ---
-title: Watercourse Topology
+title: Watercourse Topology of the ORMGP region
 author: M.Marchildon
 date: 2022-02-24
 output: html_document
@@ -64,8 +64,7 @@ For operational purposes, the topological watercourse map has been further reduc
 > Topologically-correct watercourse layer (simplified, by vertex-to-vertex line segments): [OHN_WATERCOURSE-export-segments-simpl-vertsegs.geojson](https://www.dropbox.com/s/tcrv4wpe9b1oo8j/OHN_WATERCOURSE-export-segments-simpl-vertsegs.geojson?dl=0) (epsg:26917)
 
 
-
-## Summary of generated layers:
+## Summary of generated layers
 
 1. [OHN_WATERCOURSE-export.geojson](https://www.dropbox.com/s/a44ohn98h0nkcij/OHN_WATERCOURSE-export.geojson?dl=0) - Crop of original data, with 41 features manually removed for consistency see image above.
 1. [OHN_WATERCOURSE-export-rootsel.geojson](https://www.dropbox.com/s/djphvjkospckj88/OHN_WATERCOURSE-export-rootsel.geojson?dl=0) - Polygons from where the algorithm is to begin.
@@ -74,13 +73,13 @@ For operational purposes, the topological watercourse map has been further reduc
 1. [OHN_WATERCOURSE-export-segments-simpl-vertsegs.geojson](https://www.dropbox.com/s/tcrv4wpe9b1oo8j/OHN_WATERCOURSE-export-segments-simpl-vertsegs.geojson?dl=0) (epsg:26917) - The same as above, only broken up into line segments, vertex-to-vertex. Use this only layer is to reveal the geometry associated with the *__segment ID__* used in grouping co-located point observations in our database.
 
 
-## Source code:
+# Source code
 
 See the [GitHub repository](https://github.com/OWRC/drainTopology).
 
 
 
-## References
+# References
 
 Horton, R.E., 1945. Erosional Development of Streams and Their Drainage Basins: Hydrophysical Approach To Quantitative Morphology Geological Society of America Bulletin, 56(3):275-370.
 
