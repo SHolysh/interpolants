@@ -13,3 +13,5 @@ View(dfvert)
 
 
 dfseg %>% ggplot() + geom_histogram(aes(x=length)) + xlim(c(NA,5000))
+
+dfvert %>% ggplot() + geom_histogram(aes(x=length)) + xlim(c(NA,500))
