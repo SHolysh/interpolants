@@ -24,6 +24,7 @@ From this, a subset of streams found within our study area is exported:
 
 > data set shown can be found here: [OHN_WATERCOURSE-export.geojson](https://www.dropbox.com/s/a44ohn98h0nkcij/OHN_WATERCOURSE-export.geojson?dl=0)
 
+
 ## Manual Adjustments
 
 In a total of 41 locations, stream segments were manually removed in order to prevent "unnatural" flow connectivity. For instance, Mitchel Lake is the topographical high along the Trent-Severn Waterway. Naturally, water would run away in either direction toward Lake Simcoe to the West and Lake Ontario to the south. Because it's a navigable waterway it is mapped, thus connecting the headwaters of two divergent watersheds.
