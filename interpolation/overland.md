@@ -8,7 +8,7 @@ output: html_document
 * TOC
 {:toc}
 
-# Overland Topology
+# Overland Drainage Model
 * A so-called: "hydrologic correction" has been applied to a regional digital elevation model of our study area
 * this has enabled:
 
