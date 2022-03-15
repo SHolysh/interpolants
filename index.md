@@ -53,6 +53,7 @@ There's a need for an introduction here, highlighting the need to:
 
 
 ## Modelling
+* **[Hydrograph Separation](/interpolants/modelling/hydrographseparation.html)**
 * water budget model
 * snowmelt
 
