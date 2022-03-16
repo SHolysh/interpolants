@@ -116,13 +116,16 @@ or made equivalent to Boughton (1993) by setting:
 
 $$C = \frac{(1-k)\text{BFI}_\text{max}}{1-\text{BFI}_\text{max}}$$	
 
+Eckhardt (2005) suggests estimates for $\text{BFI}_\text{max}=0.8$ for perennial streams; $0.5$ for ephemeral streams; and $0.25$ for perennial stream over hard-rock aquifers.
+
+
 ### Jakeman and Hornberger (1993)
 
 The Jakeman and Hornberger (1993) algorithm closely follows that of Boughton (1993) and Chapman and Maxwell (1996), except it was formulated from a component of the IHACRES data-based model rather than being intended strictly for hydrograph separation (Chapman, 1999). Nonetheless, the IHACRES model can be shown to fit the general digital filter of equation above, using 3 parameters, where:
 
-$$\alpha = \frac{a}{1+C} \qquad \beta = \frac{C}{1+C} \qquad \gamma=\alpha_s$$
+$$\alpha = \frac{a}{1+C} \qquad \beta = \frac{C}{1+C} \qquad \gamma=\beta\alpha_s$$
 
-> Note that setting $\alpha_s<0$ is conceptually correct, as it implies that the rate of change of slow flow is positively correlated the rate of change of total flow (Chapman, 1999).
+> Note that setting $\alpha_s<0$ is conceptually correct, as it implies that the rate of change of slow flow is positively correlated the rate of change of total flow (Chapman, 1999). Suggested value for $\alpha_s=-exp(-1/k)$.
 
 
 ### Tularam and Ilahee (2008)
@@ -237,3 +240,4 @@ Rutledge, A.T., 1998. Computer Programs for Describing the Recession of Ground-W
 
 Sloto, R.A. and M.Y. Crouse, 1996. HYSEP: A Computer Program for Streamflow Hydrograph Separation and Analysis U.S. Geological Survey Water-Resources Investigations Report 96-4040.
 
+Tularam, A.G., Ilahee, M., 2008. Exponential Smoothing Method of Base Flow Separation and its Impact on Continuous Loss Estimates. American Journal of Environmental Sciences 4(2):136-144.
