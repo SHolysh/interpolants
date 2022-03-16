@@ -40,7 +40,7 @@ In general, two metrics can be determined from hydrograph separation that need d
 The first is the baseflow index ($BFI$), which is the ratio of long term baseflow discharge to total discharge:
 
 $$\text{BFI}=\frac{\sum b}{\sum q}$$
-
+<img src="https://render.githubusercontent.com/render/math?math={\text{BFI}=\frac{\sum b}{\sum q}}">
 
 ### Recession Coefficient $(k)$
 
