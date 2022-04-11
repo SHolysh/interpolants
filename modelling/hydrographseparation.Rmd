@@ -1,14 +1,16 @@
 ---
 title: Automated hydrograph separation
-author: Oak Ridges Moraine Groundwater Program
-date: 2022-03-16
-output: html_document
+# author: Oak Ridges Moraine Groundwater Program
+date: March, 2022
+output:
+  html_document:
+    toc: true
+    toc_float: true
 ---
 
-* TOC
-{:toc}
 
-# Automated Hydrograph Separation
+
+# Hydrograph Separation
 
 > "Division of a hydrograph into direct and groundwater runoff as a basis for subsequent analysis is known as *hydrograph separation* or *hydrograph analysis*. Since there is no real basis for distinguishing between direct and groundwater flow in a stream at any instant, and since definitions of these two components are relatively arbitrary, the method of separation is usually equally arbitrary." - Linsley et.al., 1975
 
@@ -40,7 +42,6 @@ In general, two metrics can be determined from hydrograph separation that need d
 The first is the baseflow index ($BFI$), which is the ratio of long term baseflow discharge to total discharge:
 
 $$\text{BFI}=\frac{\sum b}{\sum q}$$
-<img src="https://render.githubusercontent.com/render/math?math={\text{BFI}=\frac{\sum b}{\sum q}}">
 
 ### Recession Coefficient $(k)$
 
@@ -83,7 +84,7 @@ $$b_t = \alpha b_{t-1} + \beta\left(q_t + \gamma q_{t-1}\right),$$
 
 where $q_{t-1}$ represents the total flow measured at one timestep prior to $q_t$, and $\alpha$, $\beta$ and $\gamma$ are parameters. The above equation is a three-parameter equation, however most implementations do not require every parameter be specified or, in other cases, two or more parameters can be specified as a function of another.
 
-### Lyne and Hollick (1979)
+### Lyne and Hollick
 
 For example, the Lyne and Hollick (1979) equation (the earliest of digital filters used for hydrograph separation), is a one-parameter equation found by a single smoothing parameter $a$ suggested to be set between the values of 0.9--0.95 (Nathan and McMahon, 1990), where:
 
@@ -95,14 +96,14 @@ After noting some conceptual discrepancies with the Lyne and Hollick (1979) equa
 
 $$\alpha = \frac{3k-1}{3-k} \qquad \beta = \frac{1-k}{3-k} \qquad \gamma=1.0$$
 
-### Chapman and Maxwell (1996)
+### Chapman and Maxwell
 
 Chapman and Maxwell (1996) later simplified the above equation by assuming that slow flow is the weighted average of quick flow and the slow flow from the previous timestep (Chapman, 1999), that is $b_t=kb_{t-1}+(1-k)f_t$, leading to:
 
 $$\alpha = \frac{k}{2-k} \qquad \beta = \frac{1-k}{2-k} \qquad \gamma=0.0$$
 
 
-### Boughton (1993) & Eckhardt (2005)
+### Boughton & Eckhardt
 
 Boughton (1993) used a similar approach to Chapman and Maxwell (1996), except added an adjustment parameter $C$, such that $b_t=kb_{t-1}+Cf_t$. The Boughton (1993) form of the digital filter thus requires:
 
@@ -119,7 +120,7 @@ $$C = \frac{(1-k)\text{BFI}_\text{max}}{1-\text{BFI}_\text{max}}$$
 Eckhardt (2005) suggests estimates for $\text{BFI}_\text{max}=0.8$ for perennial streams; $0.5$ for ephemeral streams; and $0.25$ for perennial stream over hard-rock aquifers.
 
 
-### Jakeman and Hornberger (1993)
+### Jakeman and Hornberger
 
 The Jakeman and Hornberger (1993) algorithm closely follows that of Boughton (1993) and Chapman and Maxwell (1996), except it was formulated from a component of the IHACRES data-based model rather than being intended strictly for hydrograph separation (Chapman, 1999). Nonetheless, the IHACRES model can be shown to fit the general digital filter of equation above, using 3 parameters, where:
 
@@ -128,15 +129,16 @@ $$\alpha = \frac{a}{1+C} \qquad \beta = \frac{C}{1+C} \qquad \gamma=\beta\alpha_
 > Note that setting $\alpha_s<0$ is conceptually correct, as it implies that the rate of change of slow flow is positively correlated the rate of change of total flow (Chapman, 1999). Suggested value for $\alpha_s=-exp(-1/k)$.
 
 
-### Tularam and Ilahee (2008)
+### Tularam and Ilahee
 
 Lastly, Tularam and Ilahee (2008) most recently presented an digital filter that also resembled that of Chapman and Maxwell (1996), with the slight difference of assuming that slow flow is the weighted average of the slow flow of the previous timestep and total flow, not quick flow (i.e., $b_t=ab_{t-1}+(1-a)q_t$). This formulation is essentially the same as Lyne and Hollick (1979) with the exception that Tularam and Ilahee (2008) does not average total flow of the current and previous timestep. The one-parameter Tularam and Ilahee (2008) form yields:
 
 $$\alpha = a \qquad \beta = 1-a \qquad \gamma=0.0$$
 
 
+<br>
 
-### Digital filter equations in their published form
+#### __*Digital filter equations in their published form:*__
 
 Lyne and Hollick (1979):
 
@@ -208,7 +210,7 @@ Furey and Gupta (2001) presented a digital filter that was formulated this way. 
 
 
 # Source code
-The above algorithms are available using the following jupyter script, some edits may be required to accommodate data format. In its current state, it readily reads a hydrograph .csv file with the header: `"Date,Flow,Flag"`.
+The above algorithms are available using [the following jupyter script](https://github.com/OWRC/interpolants/blob/main/modelling/src/hydrographseparation.ipynb), some edits may be required to accommodate data format. In its current state, it readily reads a hydrograph .csv file with the header: `"Date,Flow,Flag"`.
 
 
 
