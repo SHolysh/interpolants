@@ -75,4 +75,4 @@ where $P_z$ is the pressure interpolated to DEM cell of elevation $z$.
 Below is an animation of the hourly interpolation. Locations (points) and the surface are colour-coded the same; discrepancies are made evident where the colours mis-match.
 
 <!-- ![GIF animation of final interpolation field](fig/baro.gif) -->
-![GIF animation of final interpolation field points values and elevations are shown where data are available](https://raw.githubusercontent.com/OWRC/barometry/main/fig/baro.gif)
+![GIF animation of final interpolation field points values and elevations are shown where data are available](https://github.com/OWRC/interpolants/blob/main/interpolation/fig/baro.gif?raw=true)
