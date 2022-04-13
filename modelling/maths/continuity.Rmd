@@ -1,0 +1,23 @@
+---
+title: "Contiuity"
+author: "M. Marchildon"
+date: '2021-11-27'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## The continuity equation
+
+The continuity is the "strong" form of the conservation of energy that is constraned to a particular location:
+
+$$
+  \frac{\partial \rho}{\partial t}+\nabla \cdot \textbf{j}=\sigma
+$$
+where $\rho$ is the amount of the quantity $q$ per unit volume $V$, $\textbf{j}$ is the flux of $q$ ($\textbf{j}=\rho\textbf{u}$), $t$ is time and $\sigma$ is the source ($\sigma>0$) or sink ($\sigma<0$) term.
+
+$$
+  \frac{\partial h}{\partial t}+\nabla \cdot \textbf{q}=\sigma
+$$

@@ -41,7 +41,6 @@ There's a need for an introduction here, highlighting the need to:
 ## Interpolation
 * **[Water Table](owrc.github.io/watertable/)**
 * **[Barometry](/interpolants/interpolation/barometry.html)**
-* snowmelt
 * **[Land use](/interpolants/interpolation/landuse.html)**
     * **[impervious cover](/interpolants/interpolation/landuse.html)**
     * canopy cover
@@ -55,7 +54,7 @@ There's a need for an introduction here, highlighting the need to:
 ## Modelling
 * **[Hydrograph Separation](/interpolants/modelling/hydrographseparation.html)**
 * water budget model
-* snowmelt
+* **[Snowmelt](/interpolants/modelling/snowmelt.html)**
 
 
 
