@@ -87,3 +87,10 @@ data.frame(par,val) %>%
 ``` -->
 
 The resulting effective hydraulic conductivity is then reverted back to the nearest Low--High OGS (2010) classification.
+
+
+## References
+
+Ministry of Natural Resources and Forestry, 2019. Southern Ontario Land Resource Information System (SOLRIS) Version 3.0: Data Specifications. Science and Research Branch, April 2019
+
+Ontario Geological Survey 2010. Surficial geology of southern Ontario; Ontario Geological Survey, Miscellaneous Release— Data 128 – Revised.
