@@ -35,7 +35,7 @@ In a total of 44 locations, stream segments were manually removed in order to pr
 
 ## Defining Outlets
 
-The above figure also shows 6 "shoreline" locations, from which the [algorithm](https://github.com/OWRC/interpolants/interpolation/drainTopology) searches for any watercourse segments are touching any of these polygons.
+The above figure also shows 6 "shoreline" locations, from which the [algorithm](https://github.com/OWRC/interpolants/tree/main/interpolation/drainTopology) searches for any watercourse segments are touching any of these polygons.
 
 From these selected segments, the algorithm searches for upstream segments until a head water feature is found, all the while book keeping the connections each segment has with its neighbouring upstream and downstream segments.
 
@@ -73,7 +73,7 @@ For operational purposes, the topological watercourse map has been further reduc
 
 # Source code
 
-See [drainTopology](https://github.com/OWRC/interpolants/interpolation/drainTopology) written in Go.
+See [drainTopology](https://github.com/OWRC/interpolants/tree/main/interpolation/drainTopology) written in Go.
 
 
 
