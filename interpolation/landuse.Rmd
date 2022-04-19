@@ -27,8 +27,8 @@ The Ministry of Natural Resources and Forestry (2019) SOLRIS version 3.0 provinc
 
 The dominant SOLRIS land use class (by area) is assigned the Land use class index for every 50x50m² grid cell. 
 
-![Final 50x50m SOLRIS mapping.](https://github.com/OWRC/subwatershed/blob/main/jupyter/output/solrisv3_10_infilled_50.png?raw=true)
-Final 50x50m SOLRIS mapping. *(For illustrative purposes only [see here](https://github.com/OWRC/subwatershed/blob/main/jupyter/OWRC-SWS.ipynb) to reproduce shown raster.)*
+![Final 50x50m SOLRIS mapping.](https://github.com/OWRC/interpolants/blob/main/interpolation/calc/landuse/output/solrisv3_10_infilled_50.png?raw=true)
+Final 50x50m SOLRIS mapping. *(For illustrative purposes only [see here](https://github.com/OWRC/interpolants/blob/main/interpolation/calc/landuse/OWRC-SWS.ipynb) to reproduce shown raster.)*
 
 
 ### Land use coverage
@@ -55,19 +55,17 @@ read.csv('calc/landuse/input/lookup_200731.csv') %>%
 ```
 
 
-![Final 50x50m impervious mapping.](https://github.com/OWRC/subwatershed/blob/main/jupyter/output/solrisv3_10_infilled_50_perimp.png?raw=true)
-*(For illustrative purposes only [see here](https://github.com/OWRC/subwatershed/blob/main/jupyter/OWRC-SWS.ipynb) to reproduce shown raster.)*
+![Final 50x50m impervious mapping.](https://github.com/OWRC/interpolants/blob/main/interpolation/calc/landuse/output/solrisv3_10_infilled_50_perimp.png?raw=true) *(For illustrative purposes only [see here](https://github.com/OWRC/interpolants/blob/main/interpolation/calc/landuse/OWRC-SWS.ipynb) to reproduce shown raster.)*
 
-![Final 50x50m canopy mapping.](https://github.com/OWRC/subwatershed/blob/main/jupyter/output/solrisv3_10_infilled_50_percov.png?raw=true)
-Final 50x50m canopy mapping. *(For illustrative purposes only [see here](https://github.com/OWRC/subwatershed/blob/main/jupyter/OWRC-SWS.ipynb) to reproduce shown raster.)*
+![Final 50x50m canopy mapping.](https://github.com/OWRC/interpolants/blob/main/interpolation/calc/landuse/output/solrisv3_10_infilled_50_percov.png?raw=true) *(For illustrative purposes only [see here](https://github.com/OWRC/interpolants/blob/main/interpolation/calc/landuse/OWRC-SWS.ipynb) to reproduce shown raster.)*
 
 
 ## Surficial geology
 
 The Ontario Geological Survey's 2010 Surficial geology of southern Ontario layer also assigns a 50x50m² grid by the dominant class. 
 
-![Final 50x50m permeability mapping.](https://github.com/OWRC/subwatershed/blob/main/jupyter/output/OGSsurfGeo_50.png?raw=true)
-Final 50x50m permeability mapping. *(For illustrative purposes only [see here](https://github.com/OWRC/subwatershed/blob/main/jupyter/OWRC-SWS.ipynb) to reproduce shown raster.)*
+![Final 50x50m permeability mapping.](https://github.com/OWRC/interpolants/blob/main/interpolation/calc/landuse/output/OGSsurfGeo_50.png?raw=true)
+Final 50x50m permeability mapping. *(For illustrative purposes only [see here](https://github.com/OWRC/interpolants/blob/main/interpolation/calc/landuse/OWRC-SWS.ipynb) to reproduce shown raster.)*
 
 ### Permeability
 
@@ -93,7 +91,7 @@ The resulting effective hydraulic conductivity is then reverted back to the near
 
 
 # Source code
-Processing discussed above that are operational have been documented in a [jupyter notebook](https://github.com/OWRC/subwatershed/blob/main/jupyter/OWRC-SWS.ipynb). Source data can be found [here](https://www.dropbox.com/sh/rkdu5bwn1xhm7mh/AAA1bdaplpZAZIYl0DE1e39Oa?dl=0) and additional outputs can be found [here](https://github.com/OWRC/subwatershed/tree/main/jupyter/output).
+Processing discussed above that are operational have been documented in a [jupyter notebook](https://github.com/OWRC/interpolants/blob/main/interpolation/calc/landuse/OWRC-SWS.ipynb). Source data can be found [here](https://www.dropbox.com/sh/rkdu5bwn1xhm7mh/AAA1bdaplpZAZIYl0DE1e39Oa?dl=0) and additional outputs can be found [here](https://github.com/OWRC/interpolants/tree/main/interpolation/calc/landuse/output).
 
 ## Final shapefile
 [owrc20-50a_SWS10-final.geojson (v.2020)](https://www.dropbox.com/s/ro16gg6zi4kqbc0/owrc20-50a_SWS10-final.geojson?dl=1)

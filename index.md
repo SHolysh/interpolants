@@ -42,7 +42,7 @@ There's a need for an introduction here, highlighting the need to:
 * **[Water Table](owrc.github.io/watertable/)**
 * **[Barometry](/interpolants/interpolation/barometry.html)**
 * **[Land use](/interpolants/interpolation/landuse.html)**
-    * **[impervious cover](/interpolants/interpolation/landuse.html)**
+    * impervious cover
     * canopy cover
 * **Drainage and Topology**
     * **[Overland](/interpolants/interpolation/overland.html)**
