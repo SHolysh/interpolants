@@ -1,5 +1,6 @@
 ---
-title: Snowmelt estimation, energy balance approach (not used)
+title: Snowmelt Estimation
+author: M. Marchildon
 date: Last compiled 2021-10-18
 output: 
   html_document:
@@ -7,18 +8,24 @@ output:
     toc_float: true
 ---
 
-
-# Snowmelt estimation
-
-Daily accumulated snowmelt is collected from SNODAS. This data
-
-**TODO**
-
-- data used is SNODAS
-- prior to 2010-09-01, estimated using snowmelt model described below
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(sf)
+library(ggplot2)
+library(dygraphs)
+```
 
 
-## Snowmelt model
+
+# SNODAS
+
+Estimates of 24-hour snowmelt accumulation is recovered from the [Snow Data Assimilation System (SNODAS) data product](https://nsidc.org/data/g02158), a (near-)real-time service that returns gridded data at a ~30m resolution. The [NSIDC](https://nsidc.org/) also maintains continuous estimates covering our jurisdiction since September, 2010.
+
+Prior to 2010-09-01, snowmelt estimation is as follows.
+
+
+# Snowmelt model
 
 Snowpack melt is computed using a temperature-index/cold-content approach that closely
 follows the methodology of DeWalle and Rango (2008). The method's
@@ -29,17 +36,15 @@ precipitation), yet simulates snowpack metamorphism processes
 to account for the refreeze of liquid water held in pore spaces. 
 The model can produce estimates of snowpack density, depth, and temperature.
 
-The model represents the snowpack as a single layer with uniform
-temperature with depth. The model represents processes at the point scale and does not consider spatial
-distribution within some conceptual land area (i.e., zero-dimensional). 
-<!-- That said, by virtue of the model being applied in a spatially distibuted manner, mesoscale snowpack patterns will be realized on the basis of local slope and aspect which effectively adjusts the duration of sunshine exposure. -->
+> The model represents the snowpack as a single layer at uniform temperature. Processes are occurring at a (geographic) point, meaning there's no consideration for the spatial distribution of snow.
+
+<!-- That said, by virtue of the model being applied in a spatially distributed manner, mesoscale snowpack patterns will be realized on the basis of local slope and aspect which effectively adjusts the duration of sunshine exposure. -->
 
 The water balance within the snowpack is accounted on the basis of
 snowpack snow water equivalent ($P_\text{swe}$), which is the total mass
 of water in both ice and liquid form. The liquid portion of
 $P_\text{swe}$ is accounted for as the snowpack liquid water content
-($P_\text{lwc}$). While the cold-content dictates the energetic state of
-the snowpack, differences in $P_\text{swe}$ and $P_\text{lwc}$ dictate
+($P_\text{lwc}$). Differences in $P_\text{swe}$ and $P_\text{lwc}$ dictate
 the mass state of the snowpack; for example, the fraction of ice within
 the snowpack can be determined by:
 
@@ -47,9 +52,11 @@ $$
   f_\text{ice}=1-\frac{P_\text{lwc}}{P_\text{swe}}.
 $$
 
-By accounting for the snowpack's energy and mass states, the balance between liquid and ice varies constantly, a process termed snowpack metamorphism. Eventually, as the winter ends, the balance heavily favours the liquid form and the pack melts away.
+When accounting for the snowpack's mass states, the balance between liquid and ice is varying constantly. Eventually, as the winter ends, the balance heavily favours the liquid form and the pack melts away.
 
-### Theory
+## Theory
+
+### Snowfall
 
 The model begins first by assessing whether an existing snowpack exists.
 Air temperature ($T_a$) for this model is set to daily mean
@@ -86,8 +93,9 @@ equivalent, $\rho_{p_\ell}$ is the snowpack density prior to the
 addition of snow, and $SF_\text{swe}$ is the snowfall water equivalent.
 $P_\text{swe}$ is then updated by adding $SF_\text{swe}$.
 
-Temperature of the snowpack surface ($T_s$) is set to $T_a$ (or 0°C, whichever is less) if the pack
-is new or snowfall water equivalent ($SF_\text{swe}$) exceeds 5 mm, otherwise:
+### Energy transfer
+
+Temperature of the snowpack surface ($T_s$) is set to $T_a$ (or 0°C, whichever is less) if the pack is new or snowfall water equivalent ($SF_\text{swe}$) exceeds 5 mm, otherwise:
 
 $$
   T_s = \text{max}\left(T_{s_\ell}+C_\text{TSF}\left(T_a-T_{s_\ell}\right)\text{, } 0\right),
@@ -95,24 +103,22 @@ $$
 
 where $T_{s_\ell}$ is the snow surface temperature
 prior to adjustment, and $C_\text{TSF}$ is the surface temperature
-adjustment factor. 
-<!-- $T_s$ is restricted to an upper-limit of $0°\text{C}$. -->
+adjustment factor. *$T_s$ is restricted to an upper-limit of $0°\text{C}$.*
+
+### Degree-day melting
 
 The degree-day factor ($\text{DDF}$) is then computed from snowpack density
 following the approach given by Martinec (1960). The idea here is that
 over time, as the snowpack settles, its albedo also decreases causing
 the pack to more susceptible to melt. This provides a convenient and
 indirect means of relating snow melt potential to snow pack age. DDF is
-adjusted by (Martinec, 1960):
+adjusted by:
 
 $$
   \text{DDF} = C_\text{DDF}\frac{\rho_p}{\rho_w},
 $$
 
-where $\rho_w$ is the density of liquid water at
-$0°\text{C}$ ($\approx$ 999.84 kg/m³), and
-$C_\text{DDF}$ is the density-DDF adjustment factor. Next, potential
-snowmelt ($M_\text{swe}$) is computed by:
+where $\rho_w$ is the density of liquid water at $0°\text{C}$ ($\approx$ 999.84 kg/m³), and $C_\text{DDF}$ is the density-DDF adjustment factor. The model prevents $\text{DDF}$ from exceeding 0.008 m/°C/d. Next, potential snowmelt ($M_\text{swe}$) is computed by:
 
 $$
   M_\text{swe} = \text{min}\left(\text{max}\left(\text{DDF}\cdot\left(T_a-T_b\right)\text{, } 0\right)\text{, } P_\text{swe}\right),
@@ -127,8 +133,7 @@ $$
   \rho_p=f_\text{lw}\left(\rho_w-\rho_\text{froz}\right) + \rho_\text{froz},
 $$
 
-where $\rho_\text{froz}$ is the density of the dry/frozen
-snowpack (i.e., the pack with all liquid water ($P_\text{lwc}$) removed) and is given by:
+where $\rho_\text{froz}$ is the density of the dry/frozen snowpack (i.e., the pack with all liquid water ($P_\text{lwc}$) removed) and is given by:
 
 $$
   \rho_\text{froz}=\frac{P_\text{swe}\cdot\rho_p-P_\text{lwc}\cdot\rho_w}{P_\text{swe}-P_\text{lwc}}.
@@ -140,17 +145,21 @@ $$
 <!--   f_\text{lw}=\frac{\left(M_\text{swe}+P_\text{lwc}\right)}{P_\text{swe}}. -->
 <!-- $$ -->
 
+### Rainfall
+
 If rainfall ($R$) occurs its amount is added to both $P_\text{swe}$ and $P_\text{lwc}$ and the pack density is adjusted by:
 
 $$
   \rho_p=\frac{P_\text{swe}\cdot\rho_{p_\ell}+R \rho_w}{P_\text{swe}+R}.
 $$
 
-### Energy balance
+
+### Cold-Content energy balance
 
 Next, should liquid water be contained within the snowpack, cold content
 of the pack ($CC$) must be satisfied before drainage from the pack can
-ensue. 
+ensue.
+
 Cold-content is the amount of water that needs to freeze, in order for the pack to become "ripe" (pack temperature of 0°C) and loses the ability to freeze any more water. Like the degree-day and pack temperature equations, the cold-content is adjusted by:
 
 $$
@@ -159,28 +168,8 @@ $$
 where $C_\text{CCF}$ is the cold-content temperature index (DeWalle and Rango, 2000).
 
 
-Liquid water freezing internally to the snowpack causes its
-density to be adjusted by:
 
-$$
-  \rho_p=f_\text{lw}\left(\rho_i-\rho_w\right)+\rho_{p_\ell},
-$$
-
-where $\rho_i$ is the density of ice at $0°\text{C}$
-($\approx$ 917,kg/m³), and the fraction of the
-snowpack mass in liquid form is given by:
-
-$$
-  f_\text{lw}=
-  \begin{cases}
-    \frac{P_\text{lwc}}{P_\text{swe}} & \quad P_\text{lwc} \leq \text{CC}\\
-    \frac{\text{CC}}{P_\text{swe}} & \quad \text{otherwise}\\
-  \end{cases}.
-$$
-
-The amount frozen to the pack is subtracted from
-$P_\text{lwc}$.
-
+### Snowpack liquid water accounting
 In the final step, liquid water exceeding the snowpack liquid water
 holding capacity is allowed to drain from the base of the pack. When
 $P_\text{swe}=P_\text{lwc}$, i.e., the snowpack is composed solely of
@@ -225,45 +214,110 @@ $$
   \rho_p=\frac{\left(P_\text{lwc}-P_\text{drn}\right)\rho_w+\left(P_\text{swe}-P_\text{lwc}\right)\rho_\text{froz}}{P_\text{swe}-P_\text{drn}}
 $$
 
-Pack densification (i.e., settlement) due to internal redistribution of water through phase changes is implicitly handled by this equation.
 
-<!-- Pack densification (i.e., settlement) is caused by two processes: -->
-<!-- internal redistribution of water through phase changes and consolidation -->
-<!-- though the weight of the snowpack. The former process is implicitly -->
-<!-- handled by the model described above, while the latter is handled by a -->
-<!-- settlement factor given by: -->
 
-<!-- $$ -->
-<!--   \rho_p= -->
-<!--   \begin{cases} -->
-<!--     \rho_{p_\ell}\left(\frac{\rho_i}{\rho_\text{froz}}\right)^{C_\text{dens}} & \quad {p_\ell}<\rho_i \\ -->
-<!--     \rho_{p_\ell}  & \quad \text{otherwise} -->
-<!--   \end{cases} -->
-<!-- $$ -->
+### Pack densification
 
-### Model calibration
+Pack densification (i.e., settlement) is caused by two processes: 
 
-<!-- Data from 537 current and historical meteorological stations were collected -->
-<!-- and screened for snow depth data. Of these stations, the data were -->
-<!-- further screened for winter seasons (October through May) for complete -->
-<!-- climate data reported for more than 100 consecutive days. Based on the -->
-<!-- screening, 100 stations were selected, some having multiple season -->
-<!-- meeting the screening criteria. In all, 233 snow seasons were collected -->
-<!-- and were reordered into a continuous 233-year dataset for model -->
-<!-- validation. -->
+1. internal redistribution of water through phase changes (i.e., refreezing); and 
+2. consolidation through the weight of the snowpack. 
 
-<!-- **TODO** -->
+
+#### Liquid water refreeze
+
+Liquid water freezing internally to the snowpack causes its
+density to be adjusted by:
+
+$$
+  \rho_p=f_\text{lw}\left(\rho_i-\rho_w\right)+\rho_{p_\ell},
+$$
+
+where $\rho_i$ is the density of ice at $0°\text{C}$
+($\approx$ 917,kg/m³), and the fraction of the
+snowpack mass in liquid form is given by:
+
+$$
+  f_\text{lw}=
+  \begin{cases}
+    \frac{P_\text{lwc}}{P_\text{swe}} & \quad P_\text{lwc} \leq \text{CC}\\
+    \frac{\text{CC}}{P_\text{swe}} & \quad \text{otherwise}\\
+  \end{cases}.
+$$
+
+The amount frozen to the pack is subtracted from
+$P_\text{lwc}$.
+
+#### Snowpack consolidation
+
+Consolidation is handled by a settlement factor given by:
+
+$$
+  \rho_p=
+  \begin{cases}
+    \rho_{p_\ell}\left(\frac{\rho_i}{\rho_\text{froz}}\right)^{C_\text{dens}} & \quad {p_\ell}<\rho_i \\
+    \rho_{p_\ell}  & \quad \text{otherwise}
+  \end{cases}
+$$
+
+
+
+## Model calibration
 
 The calibration of the model was targeted at matching measured snowpack depths. It is likely that relying on snowpack depth measurements is the greatest source of error in this process. Preferably, knowing the snow water content (i.e., SWE) of the snowpack would improve upon this limitation. It is understood, however, that much greater resources are required in collecting SWE---so we're stuck with pack depth.
 
-The trouble with snowpack depth is that to convert it to smowmelt, one needs knowledge of the snowpack's density--a very hard process to model. Nonetheless, snow abalation models, like the one described above, tend to match well to measured snowdepth.
+The trouble with snowpack depth is that to convert it to snowmelt, one needs knowledge of the snowpack's density--information we do not have. Nonetheless, snow ablation models, like the one described above, tend to match (*deceptively?*) well to measured snow depth (see below).
 
-A total of 66 meteorological stations (current and historic) kept records of snowpack depth. Of these, 28 stations had not recorded the necessary inputs (precipitation and temperature) to operate the methodology above; they were discarded. Another 10 were rejected do to suspect data quality. The remaining 28 are shown here:
-
-
-The model parameters ($C_\text{TSF}$, $C_\text{DDF}$, $C_\text{CCF}$ and $T_b$) were optimized by machine learning. Here the shuffled complex evolution scheme (Duan et.al., 1993) is employed.
+A total of 66 meteorological stations (current and historic) kept records of snowpack depth. Of these, 28 stations had not recorded the necessary inputs (precipitation and temperature) to operate the methodology above; they were discarded. Another 3 were rejected do to suspect data quality. The remaining 35 are shown here:
 
 
+```{r map, fig.width=9, echo=FALSE, warning=FALSE}
+wb <- read_sf('E:/Sync/@gis/water/GreatLakes_WGS.geojson')
+
+read.csv("dat/snowpack-station-summary.csv") %>%
+  ggplot() +
+  theme(axis.title = element_blank()) +
+  geom_sf(data=wb) +
+  geom_point(aes(LONG, LAT)) +
+  lims(x=c(-82,-76), y=c(43,45))
+```
+
+
+The model parameters ($C_\text{DDF}=0.021\text{ m}°\text{C}^{-1}\text{d}^{-1}$, $C_\text{CCF}=0.000055$, $C_\text{dens}=0.020$, $C_\text{TSF}=0.049$ and $T_b=1.33°\text{C}$) were optimized globally (against all stations simultaneously) using the shuffled complex evolution scheme (Duan et.al., 1993---[using this code](https://github.com/maseology/glbopt)). 
+
+
+
+### Validation
+Below is a dynamic plotting tool one may `click-and-drag` an area to zoom-in; `double-click` to get back to full extent.
+
+The the rainfall, snowfall, min and max temperatures, and snowpack depths collected from the 35 locations where stacked to make a 400+ year input time series. Below observed vs. simulated depth of snowpack, after running the model with the optimized parameter set, is shown.
+
+In viewing the results, one can appreciate how well the simple model matches observed patterns. Most notably:
+
+* the timing of major melt events, significant to local hydrology, matches well.
+* the model looks universal, maximum pack depth appears to vary from station to station, yet the model remains consistent.
+
+
+
+```{r validation, fig.width=9, echo=FALSE}
+read.csv('dat/taggregate.csv') %>% 
+  na_if(-9999) %>%
+  select(-c("rf","tf","sf","tm","por","swe","den")) %>%
+  mutate('diff'=sim-obs, d=d/365.24) %>%
+  mutate(sm = na_if(sm, 0)) %>%
+  dygraph(main = "Snowpack model validation") %>% 
+    dyAxis("x", label = "Aggregated snowpack record (years)") %>%
+    dyAxis("y", label = "Snowpack depth (m)", valueRange = c(0, 1.5)) %>% # ) %>% #
+    dyAxis('y2', label = 'error (m)', valueRange = c(-3, 0.75)) %>%
+    dySeries("diff", label = "Error", axis = 'y2', stepPlot = TRUE, color = "grey") %>% #, fillGraph = TRUE) %>% #"#008080"
+    dySeries("sim", label = "Simulated", strokeWidth = 2, fillGraph = TRUE, color = "darkgreen") %>%
+    # dySeries("obs", label = "Observed", strokeWidth = 0, drawPoints = TRUE, color = "blue") %>%
+    dySeries("obs", label = "Observed", strokeWidth = 2, fillGraph = TRUE, color = "blue") %>%
+    dySeries("sm", label = "Snowmelt", strokeWidth = 2, fillGraph = TRUE, stepPlot=TRUE, color = "red") %>%
+    dyOptions(axisLineWidth = 1.5) %>%
+    dyLegend(show="auto", width = 400) %>%
+    dyRangeSelector()
+```
 
 
 
@@ -271,10 +325,11 @@ The model parameters ($C_\text{TSF}$, $C_\text{DDF}$, $C_\text{CCF}$ and $T_b$) 
 
 # References
 
-Judson and Doesken, 2000
-
-DeWalle Rango, 2000
-
-Martinec, 1960
+DeWalle, D.R. and A. Rango, 2008. Principles of Snow Hydrology. Cambridge University Press, Cambridge. 410pp.
 
 Duan, Q.Y., V.K. Gupta, and S. Sorooshian, 1993. Shuffled Complex Evolution Approach for Effective and Efficient Global Minimization. Journal of Optimization Theory and Applications 76(3) pp.501-521.
+
+Judson, A. and N. Doesken, 2000. Density of Freshly Fallen Snow in the Central Rocky Mountains. Bulletin of the American Meteorological Society, 81(7): 1577-1587.
+
+Martinec J., 1960. The degree-day factor for snowmelt-runoff forecasting. In Proceedings General Assembly of Helsinki, Commission on Surface Waters. IASH Publ. 51, pp. 468-477.
+
