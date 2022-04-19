@@ -40,6 +40,7 @@ There's a need for an introduction here, highlighting the need to:
 
 ## Interpolation
 * **[Water Table](owrc.github.io/watertable/)**
+* **[Hydrograph disaggregation](/interpolants/modelling/hydroparse.html)**
 * **[Barometry](/interpolants/interpolation/barometry.html)**
 * **[Land use](/interpolants/interpolation/landuse.html)**
     * impervious cover
@@ -55,7 +56,7 @@ There's a need for an introduction here, highlighting the need to:
 * **[Hydrograph Separation](/interpolants/modelling/hydrographseparation.html)**
 * water budget model
 * **[Snowmelt](/interpolants/modelling/snowmeltCCF.html)**
-
+* **[Solar Radiation Transmittance](/interpolants/modelling/BristowCampbell.html)**
 
 
 # Products
