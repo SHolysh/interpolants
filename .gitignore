@@ -21,3 +21,10 @@
 *watercourse_*
 *.geojson
 *-script.txt
+
+input/
+*.bil
+*.hdr
+*.prj
+*.rar
+*.7z
