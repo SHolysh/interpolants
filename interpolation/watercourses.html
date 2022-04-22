@@ -291,9 +291,24 @@ div.tocify {
 <h2>Vertex to vertex</h2>
 <p>For operational purposes, the topological watercourse map has been further reduced to a set of 2-point “line segments”, one for every vertex (X-Y location) used to define the entire simplified ORMGP watercourse network.</p>
 <ul>
-<li>There are 80,479 watercourse segments, having an average length of 580m (sd: 610m); made up of</li>
-<li>485,880 vertices, having a mean distance vertex to vertex 95m (sd: 82m)</li>
+<li>There are 80,479 linear watercourse segments (junction-to-junction), having an average length of 580m (sd: 610m); made up of</li>
+<li>486,332 vertices, having a mean distance vertex to vertex 95m (sd: 82m)</li>
 </ul>
+<p>In the code chunk below presents the avantage of the topological structure described here. For instance, by providing the recursive function (below) a stream Node, all the downstream Nodes will be collected.</p>
+<pre><code>import &quot;github.com/maseology/mmaths/topology&quot;
+
+// GetDownstreamVertices returns a set of vertices that make up a 
+// polyline marking the drainage path from the (point-like) Node provided.
+func GetDownstreamVertices(fromNode *topology.Node) (xys [][]float64) {
+  var recurse func(*topology.Node)
+  recurse = func(usn *topology.Node) {
+    xys = append(xys, {usn.S[0], usn.S[1]})
+    for _, d := range usn.DS {
+      recurse(d)
+    }
+  }
+  recurse(fromSegID)
+}</code></pre>
 </div>
 <div id="summary-of-generated-layers" class="section level1">
 <h1>Summary of generated layers</h1>
