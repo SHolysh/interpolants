@@ -44,7 +44,7 @@ There's a need for an introduction here, highlighting the need to:
 
 
 ## Interpolation
-* **[Water Table](owrc.github.io/watertable/)**
+* **[Water Table](https://owrc.github.io/watertable/)**
 * **[Barometry](/interpolants/interpolation/barometry.html)**
 * **[Land use](/interpolants/interpolation/landuse.html)**
     * impervious cover
