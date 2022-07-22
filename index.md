@@ -64,10 +64,16 @@ There's a need for an introduction here, highlighting the need to:
 * **[Hydrograph separation](/interpolants/modelling/hydrographseparation.html)**
    * **[Hydrograph disaggregation](/interpolants/modelling/hydroparse.html)**
 * **[Water-budget model](/interpolants/modelling/waterbudgetmodel.html)**
-* **[Snowmelt](/interpolants/modelling/snowmeltCCF.html)**
-* Potential Solar Irradiation
-   * **[Atmospheric transmittance](/interpolants/modelling/BristowCampbell.html)**
+   * **[Input data](/interpolants/modelling/waterbudget/data.html)**
+   * **[Soil moisture accounting](/interpolants/modelling/waterbudget/sma.html)**
+   * **[Total evaporation](/interpolants/modelling/waterbudget/pet.html)**
+   * Potential Solar Irradiation
+      * **[Atmospheric transmittance](/interpolants/modelling/BristowCampbell.html)**
+   * **[Snowmelt](/interpolants/modelling/waterbudget/snowmeltCCF.html)**
+   * **[Shallow groundwater](/interpolants/modelling/waterbudget/gw.html)**
+   * **[Overland flow routing](/interpolants/modelling/waterbudget/overlandflow.html)**
 
+   
 
 # Products
 * 6hr, 24hr
