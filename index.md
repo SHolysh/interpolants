@@ -63,7 +63,7 @@ There's a need for an introduction here, highlighting the need to:
 * Numerical Model Custodianship Program
 * **[Hydrograph separation](/interpolants/modelling/hydrographseparation.html)**
    * **[Hydrograph disaggregation](/interpolants/modelling/hydroparse.html)**
-* Water-budget model
+* **[Water-budget model](/interpolants/modelling/waterbudgetmodel.html)**
 * **[Snowmelt](/interpolants/modelling/snowmeltCCF.html)**
 * Potential Solar Irradiation
    * **[Atmospheric transmittance](/interpolants/modelling/BristowCampbell.html)**
