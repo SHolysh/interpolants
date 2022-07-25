@@ -72,7 +72,7 @@ There's a need for an introduction here, highlighting the need to:
    * **[Snowmelt](/interpolants/modelling/waterbudget/snowmeltCCF.html)**
    * **[Shallow groundwater](/interpolants/modelling/waterbudget/gw.html)**
    * **[Overland flow routing](/interpolants/modelling/waterbudget/overlandflow.html)**
-
+   * **[References](/interpolants/modelling/waterbudgetmodel.html#references)**
    
 
 # Products
