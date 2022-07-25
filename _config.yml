@@ -1,5 +1,5 @@
-title:  Data Interpolation
-description: Data processing practices at the Oak Ridges Moraine Groundwater Program
+title:  Data Interpolation and Products
+description: Oak Ridges Moraine Groundwater Program
 markdown: kramdown
 kramdown:
     math_engine: katex
