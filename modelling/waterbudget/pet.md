@@ -20,7 +20,7 @@ $$
 
 where $\overline{E}_p$ is the average annual $E_p$, $E_\text{base}$ is the minimum annual $E_p$, $i$ is the day of year from January 1st and $\varphi$ is the day offset from $i$ when $E_\text{base}$ occurs.
 
-The next means of computing potential evaporation is based on the empirical Makkink (1957) method, which is functionally identical to the more common Priestly-Taylor (1972) approach. The main difference is that the Makkink method utilizes total incoming short-wave radiation, or "global radiation" ($K^\downarrow$), which is more readily available than net radiation $(Q^\text{*})$ used in the Priestly-Taylor approach and other so-called combination approaches. In either case, both $K^\downarrow$ and $Q^\text{*}$ require observational measurements from sources that are rare and not adequately distributed at the regional scale the model is applied to. Instead, global radiation is approximated using a Prescott-type equation (Nov\'ak, 2012): <!-- pg.232 -->
+The next means of computing potential evaporation is based on the empirical Makkink (1957) method, which is functionally identical to the more common Priestly-Taylor (1972) approach. The main difference is that the Makkink method utilizes total incoming short-wave radiation, or "global radiation" ($K^\downarrow$), which is more readily available than net radiation $(Q^\ast)$ used in the Priestly-Taylor approach and other so-called combination approaches. In either case, both $K^\downarrow$ and $Q^\ast$ require observational measurements from sources that are rare and not adequately distributed at the regional scale the model is applied to. Instead, global radiation is approximated using a Prescott-type equation (Nov\'ak, 2012): <!-- pg.232 -->
 
 $$
 	K^\downarrow = \left(a+b\frac{n}{N}\right)K_e,
@@ -38,7 +38,7 @@ Realistically, southern Ontario models at this scale can only rely on daily min/
 
 While it is understood great simplification is made by choosing such an empirical model (i.e., neglecting the impacts from wind speed, surface roughness, atmospheric moisture capacity, etc.) it is deemed appropriate for the purpose of this regional recharge model on the basis that in southern Ontario climates, $E_p$ is negligible during the late fall, winter, and early spring seasons, whereas the remaining season, actual evaporation is limited by moisture availability and not by evaporative potential, meaning that evaporative flux has a greater dependence on soil moisture accounting rather than the method chosen to estimate $E_p$.
 
-Future models may also incorporate more sophisticated methods such as the combination approaches. These methods require knowledge of net radiation ($Q^\text{*}=K^\text{*}+L^\text{*}$), where $K^\text{*}=(1-\alpha)K_\text{in}$ is the net shortwave radiation, $\alpha$ is the surface albedo, and $L^\text{*}$ is the net long-wave radiation that can be approximated by (Budyko, 1974; Nov\'ak, 2012):
+Future models may also incorporate more sophisticated methods such as the combination approaches. These methods require knowledge of net radiation ($Q^\ast=K^\ast+L^\ast$), where $K^\ast=(1-\alpha)K_\text{in}$ is the net shortwave radiation, $\alpha$ is the surface albedo, and $L^\ast$ is the net long-wave radiation that can be approximated by (Budyko, 1974; Nov\'ak, 2012):
 
 $$
 \begin{align*}
@@ -54,10 +54,10 @@ where $\varepsilon$ is the emissivity of the evaporating surface ($0.96\leq\vare
 With net radiation, $E_p$ can be approximated first by using the Priestly-Taylor equation:
 
 $$
-	\lambda E_p = \alpha_{_{PT}}\frac{\Delta}{\Delta+\gamma}\left(Q^*-Q_G\right),
+	\lambda E_p = \alpha_{_{PT}}\frac{\Delta}{\Delta+\gamma}\left(Q^\ast-Q_G\right),
 $$
 
-where $\alpha_{_{PT}}$ is the Priestly-Taylor coefficient ($\approx 1.26$, but can vary depending on atmospheric state and surface saturation), and $Q_G$ is the gound heat flux, which is typically deemed negligeable, but can be approximated by:
+where $\alpha_{_{PT}}$ is the Priestly-Taylor coefficient ($\approx 1.26$, but can vary depending on atmospheric state and surface saturation), and $Q_G$ is the gound heat flux, which is typically deemed negligible, but can be approximated by:
 
 $$
 	Q_G = -k_s\frac{\partial T}{\partial z},
@@ -65,7 +65,7 @@ $$
 
 where $k_s$ is the thermal conductivity of the soil, and $\partial T/\partial z$ is the vertical temperature gradient near the surface.
 
-Lastly, the most sophisticated method not only incorperates atmospheric conditions, but surface conditions aswell that can be parameterized with the model. The Penman-Monteith equation... 
+Lastly, the most sophisticated method not only incorporates atmospheric conditions, but surface conditions as well that can be parameterized with the model. The Penman-Monteith equation... 
 
 _**TODO**_
 
