@@ -2,10 +2,6 @@
 title: Automated hydrograph separation
 # author: Oak Ridges Moraine Groundwater Program
 date: March, 2022
-output:
-  html_document:
-    toc: true
-    toc_float: true
 ---
 
 
