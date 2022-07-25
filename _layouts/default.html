@@ -19,14 +19,40 @@
             inlineMath: [['$', '$']]
           }
         };
-    </script>       
+    </script>
+    <!-- https://ryanfb.github.io/etc/2020/04/27/last_modified_dates_for_github_pages_jekyll_posts.html -->
+    <script type="text/javascript">
+      function setModifiedDate() {
+        if (document.getElementById('last-modified')) {
+          fetch("https://api.github.com/repos/{{ site.github.owner_name }}/{{ site.github.repository_name }}/commits?path={{ page.path }}")
+            .then((response) => {
+              return response.json();
+            })
+            .then((commits) => {
+              var modified = commits[0]['commit']['committer']['date'].slice(0,10);
+              if(modified != "{{ page.date | date: '%Y-%m-%d' }}") {
+                document.getElementById('last-modified').textContent = "Last Modified: " + modified;
+              }
+            });
+        }
+      }
+    </script>
+    <style id="logo-styles">
+      img.logo {
+        position: absolute;
+        max-width: 250px;
+        padding: 15px;
+        border: none;
+        box-shadow: none;
+      }
+    </style>       
   </head>
 
-  <body>
+  <body onload="setModifiedDate();">
 
     <!-- HEADER -->
     <div id="header_wrap" class="outer">
-      <img src="images/ORMGP_logo_no_text_bw.png" alt="ORMGPlogo" position="absolute" max-width="250px" padding="15px"/>
+      <img class="logo" src="images/ORMGP_logo_no_text_bw.png" alt="ORMGPlogo">
         <header class="inner">
           <!-- {% if site.github.is_project_page %}
             <a id="forkme_banner" href="{{ site.github.repository_url }}">View on GitHub</a>
@@ -59,6 +85,7 @@
         <p class="copyright">{{ site.title | default: site.github.repository_name }} maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a></p>
         {% endif %}
         <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+        <span id='last-modified'/>
       </footer>
     </div>
   </body>
