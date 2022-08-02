@@ -36,7 +36,7 @@ A number of open-source data analysis tools have been employed in our overall sy
 * [Go](https://go.dev/)
 * FORTRAN/C++
 * VB.NET/C#
-* [R](https://www.r-project.org/) — a free, open-source "...software environment for statistical computing and graphics."
+* [R](https://www.r-project.org/) and [RStudio](https://www.rstudio.com/) — a free, open-source "...software environment for statistical computing and graphics."
    * [R-Shiny](https://shiny.rstudio.com/) — online, real-time data analytics
    * [Leaflet for R](https://rstudio.github.io/leaflet/) — web mapping
    * [ggplot2](https://ggplot2.tidyverse.org/) — data visualization
