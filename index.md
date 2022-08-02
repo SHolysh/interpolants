@@ -22,7 +22,7 @@ The [Oak Ridges Moraine Groundwater Program (ORMGP)](https://www.oakridgeswater.
 
 # Data Sources
 
-The ORMGP data systems described below are active, in that they are [automatically updated at near real-time](/interpolants/sources/sources.html). From hourly and daily intervals, a series of "web-scaper" routines have been written to access open data made available from many sources including international, federal, provincial, municipal and conservation authority agencies. The objective is to "centralize" hydrogeological data for the south-central Ontario (Canada) juridiction that currently makes-up the [ORMGP](https://owrc.github.io/snapshots/partners.html).
+The ORMGP data systems described below are active, in that they are [automatically updated at near real-time](/interpolants/sources/sources.html). From hourly and daily intervals, a series of "web-scraper" routines have been written to access open data made available from many sources including international, federal, provincial, municipal and conservation authority agencies. The objective is to "centralize" hydrogeological data for the south-central Ontario (Canada) jurisdiction that currently makes-up the [ORMGP](https://owrc.github.io/snapshots/partners.html).
 
 
 # Processes, Tools & Technologies
@@ -55,8 +55,8 @@ A number of open-source data analysis tools have been employed in our overall sy
 
 ### Databases and APIs
 * **[Our main MSSQL Server database](https://owrc.github.io/database-manual/Contents/TOC.html)**
-* [VertiGIS Studio/GeoCortex](https://www.vertigis.com/vertigis-studio/) — Our principle [web mapping server](https://maps.oakridgeswater.ca/Html5Viewer/index.html?viewer=ORMGPP) used by parteners to access our database and products.
-* golang server — multi-functional REST API serving a varity of data products and interpolation tools.
+* [VertiGIS Studio/GeoCortex](https://www.vertigis.com/vertigis-studio/) — Our principle [web mapping server](https://maps.oakridgeswater.ca/Html5Viewer/index.html?viewer=ORMGPP) used by partners to access our database and products.
+* golang server — multi-functional REST API serving a variety of data products and interpolation tools.
 
 
 
@@ -67,7 +67,7 @@ A number of open-source data analysis tools have been employed in our overall sy
 * [**Daily data**](/interpolants/interpolation/daily.html), updated nightly, including:
    * Min/max daily temperature
    * Atmospheric pressure
-   * Precipitaion (rainfall and snowfall)
+   * Precipitation (rainfall and snowfall)
    * Snowmelt
    * Pan evaporation
    * Solar irradiation
@@ -91,7 +91,7 @@ _Static 2D fields, updated frequently_
 * Drainage and Topology
     * [Overland](/interpolants/interpolation/overland.html)
     * [Watercourses](/interpolants/interpolation/watercourses.html)
-    * [Subwatersheds](/interpolants/interpolation/subwatershed.html)
+    * [Sub-watersheds](/interpolants/interpolation/subwatershed.html)
 
 
 
