@@ -36,7 +36,7 @@ Below is a list data sources used in deriving many of the interpolation products
   - [National Water Data Archive: HYDAT](https://www.canada.ca/en/environment-climate-change/services/water-overview/quantity/monitoring/survey/data-products-services/national-archive-hydat.html) are updated quarterly as sqlite database files. Imports from HYDAT always overwrites data recorded through Datamart.
     - daily streamflow stage and discharge
 
-* **ECCC-MSC** - Environment and Climate Change Canada-Meteorological Service of Canada
+* **ECCC-MSC** - Environment and Climate Change Canada—Meteorological Service of Canada
     - [Historical Data](https://climate.weather.gc.ca/historical_data/search_historic_data_e.html) (html portal to meteorologic data)
         - hourly: air temperature, air pressure, relative humidity, wind speed, wind direction
         - daily: min/max air temperature, rainfall, snowfall, snow depth
