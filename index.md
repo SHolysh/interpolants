@@ -71,7 +71,7 @@ A number of open-source data analysis tools have been employed in our overall sy
    * Snowmelt
    * Pan evaporation
    * Solar irradiation
-* [**Hourly data**](/interpolants/interpolation/subdaily.html), updated every 6-hours, including:
+* [**Hourly data**](/interpolants/interpolation/hourly.html), updated every 6-hours, including:
    * Temperature
    * Atmospheric pressure
    * Precipitation

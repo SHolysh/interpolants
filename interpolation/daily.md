@@ -48,7 +48,7 @@ These data are collected at (point/local/scalar) weather stations and require sp
 Precipitation is offered as rainfall and snowfall amounts to the tenth of a millimeter.
 
 ### Environment Canada Regional Deterministic Precipitation Analysis
-#### (*2002—present, over a sequence of versions*)
+<!-- #### (*2002—present, over a sequence of versions*) -->
 The [Regional Deterministic Precipitation Analysis (RDPA)](https://weather.gc.ca/grib/grib2_RDPA_ps10km_e.html), which is based on the [Canadian Precipitation Analysis (CaPA) system](https://collaboration.cmc.ec.gc.ca/cmc/cmoi/product_guide/docs/lib/capa_information_leaflet_20141118_en.pdf), provides a country-wide field of 6-hourly precipitation accumulations. The CaPA-RDPA products has gone through a number of version changes since the turn of the century. The data are updated in near real-time, meaning that the current state of precipitation patterns can be made immediately available.
 
 Simply put, CaPA-RDPA is an amalgamation of near-cast weather model predictions corrected by RADAR data and ground-truthed using a select set of weather stations. Essentially, CaPA-RDPA is a "[data assimilation](https://www.ecmwf.int/en/research/data-assimilation) system" (DAS) that provides users with the best-possible spatial distribution of precipitation, necessary for analyzing hydrology at the regional scale like the ORMGP jurisdiction.
@@ -76,10 +76,12 @@ The latest iteration of CaPA is the [High Resolution Deterministic Precipitation
 
 
 ## Snowmelt
+### SNODAS (*2010—present*)
 Snow water equivalent (SWE) and snowmelt must be derived from snowpack ablation models. These models come in a variety of forms and sophistication. The primary source of such information comes from the [Snow Data Assimilation System (SNODAS)](https://nsidc.org/data/g02158) system (NOHRSC, 2004), which offers ~1km gridded 24-hour (UTC 06-06) snowmelt totals, published freely in near real-time. The advantage of SNODAS is that we can avoid the need to model snowmelt explicitly, and leverage existing resources. The data cover our jurisdiction from 2009—present.
 
 ![SNODAS sample](fig/nsm_depth_2016011505_National.jpg)
 
+### Cold Content Energy Balance Snowpack Model (*1901—present*)
 When unavailable (and prior to 2010), a [cold content energy balance snowpack model](/interpolants/modelling/waterbudget/snowmeltCCF.html) is applied relying on interpolated precipitation and temperatures.
 
 
@@ -87,12 +89,14 @@ When unavailable (and prior to 2010), a [cold content energy balance snowpack mo
 ## Minimum and Maximum daily Temperature
 Elevations within the ORMGP region range from 75-400 masl and thus orographic effects to temperatures were deemed negligible. The spatial distribution of minimum/maximum daily temperature is then interpolated from meteorological stations using an inverse squared-distance methodology.
 
-All temperature data are acquired from the Meteorological Service of Canada (*1901—present*).
+### Meteorological Service of Canada (*1901—present*)
+All temperature data are acquired from the Meteorological Service of Canada.
 
 
 
 ## Atmospheric Pressure
-Atmospheric pressure data are acquired from Meteorological Service of Canada (*~1950—present*), which come in as hourly averages. In contrast to temperatures, [elevation does have am impact on pressure distribution and thus corrections are made](/interpolants/interpolation/barometry.html). Once corrected, the hourly data are then aggregated to daily averages.
+### Meteorological Service of Canada (*1953—present*)
+Atmospheric pressure data are acquired from Meteorological Service of Canada, which come in as hourly averages. In contrast to temperatures, [elevation does have am impact on pressure distribution and thus corrections are made](/interpolants/interpolation/barometry.html). Once corrected, the hourly data are then aggregated to daily averages.
 
 
 
