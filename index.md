@@ -1,5 +1,4 @@
 ---
-title:  ORMGP Interpolants
 author: Oak Ridges Moraine Groundwater Program
 output: html_document
 ---

@@ -1,12 +1,8 @@
 ---
 title: Data Sources
 author: M.Marchildon
-date: 2022-02-22
 output: html_document
 ---
-
-<p class="title">Data Sources</p>
-
 
 * TOC
 {:toc}
