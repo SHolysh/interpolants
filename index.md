@@ -63,6 +63,7 @@ A number of open-source data analysis tools have been employed in our overall sy
 # Products
 
 ## Near real-time data, spatially interpolated
+* [**Clip 'N Ship**](/interpolants/sources/clipnship.html)
 * [**Daily data**](/interpolants/interpolation/daily.html), updated nightly, including:
    * Min/max daily temperature
    * Atmospheric pressure
