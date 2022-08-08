@@ -17,7 +17,8 @@ The model's primary intention is to interpolate watershed moisture conditions fo
 
 This model is currently in beta mode, and its use for practical application should proceed with caution. Users should be aware that model results posted online will always be subject to change. Ultimately, the intent of this model is to produced ranges of long-term (monthly average) water budgeting as a hydrological reference for the partners of the ORMGP. 
 
-<iframe src="https://golang.oakridgeswater.ca/pages/subwatersheds.html"></iframe>
+
+<iframe src="https://golang.oakridgeswater.ca/pages/subwatersheds.html" width="100%" height="400" scrolling="no" allowfullscreen></iframe>
 
 
 ### Model components:
