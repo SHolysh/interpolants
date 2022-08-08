@@ -1,10 +1,10 @@
 ---
-title: Clip 'n Ship
+title: Clip n' Ship
 author: M.Marchildon
 output: html_document
 ---
 
-TODO
+The ORMGP 
 
 
 # Data formats

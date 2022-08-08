@@ -62,8 +62,25 @@ A number of open-source data analysis tools have been employed in our overall sy
 
 # Products
 
+## General data export
+* [**"Clip n' Ship"**](/interpolants/sources/clipnship.html) — spatial data export system, by geographic extent. Includes many of the products listed below.
+
+## Spatial interpolation
+_Static 2D fields, updated frequently_
+* [**Water Table Mapping**](https://owrc.github.io/watertable/)
+* [Land use](/interpolants/interpolation/landuse.html), including:
+    * impervious cover
+    * canopy cover
+    * wetland cover
+    * open water
+    * relative permeability
+* Drainage and Topology
+    * [Overland](/interpolants/interpolation/overland.html)
+    * [Watercourses](/interpolants/interpolation/watercourses.html)
+    * [Sub-watersheds](/interpolants/interpolation/subwatershed.html)
+
 ## Near real-time data, spatially interpolated
-* [**Clip 'N Ship**](/interpolants/sources/clipnship.html)
+_Time-series data, updated nightly_
 * [**Daily data**](/interpolants/interpolation/daily.html), updated nightly, including:
    * Min/max daily temperature
    * Atmospheric pressure
@@ -79,24 +96,13 @@ A number of open-source data analysis tools have been employed in our overall sy
 
 
 
-## Spatial interpolation
-_Static 2D fields, updated frequently_
-* [Water Table](https://owrc.github.io/watertable/)
-* [Land use](/interpolants/interpolation/landuse.html), including:
-    * impervious cover
-    * canopy cover
-    * wetland cover
-    * open water
-    * relative permeability
-* Drainage and Topology
-    * [Overland](/interpolants/interpolation/overland.html)
-    * [Watercourses](/interpolants/interpolation/watercourses.html)
-    * [Sub-watersheds](/interpolants/interpolation/subwatershed.html)
+
 
 
 
 ## Modelling
-* [Numerical Model Custodianship Program](https://owrc.github.io/snapshots/numerical-model-custodianship-program.html)
+_Numerical model files and output_
+* [Numerical Model Custodianship Program](https://owrc.github.io/snapshots/numerical-model-custodianship-program.html) — model archive.
 * [Hydrograph separation](/interpolants/modelling/hydrographseparation.html)
    * [Hydrograph disaggregation](/interpolants/modelling/hydroparse.html)
 * [ORMGP distributed water-budget model](/interpolants/modelling/waterbudgetmodel.html)
