@@ -31,7 +31,8 @@ _**todo**_
 
 _**todo**_
 
-### Optimized Critical Temperature Approach
+<!-- moved to  -->
+<!-- ### Optimized Critical Temperature Approach
 The precipitation fields are proportioned into rainfall and snowfall amounts based using the "critical temperature" $(T_\text{crit})$ approach:
 
 $$
@@ -50,7 +51,7 @@ $$
 \end{cases}
 $$
 
-An optimization routine is employed to determine $T_\text{crit}$ such that annual average snowfall is equal to annual average snowmelt to ensure minimal deviation from total precipitation. 
+An optimization routine is employed to determine $T_\text{crit}$ such that annual average snowfall is equal to annual average snowmelt to ensure minimal deviation from total precipitation.  -->
 
 ### Sub-daily Snowmelt
 Furthermore, snowmelt, which is acquired at a daily timestep that represents the *"total of 24 per hour melt rates, 06:00 UTC-06:00 UTC ... integrated for the previous 24 hours, giving daily totals"* (NOHRSC, 2004), is disaggregated to a 6-hourly time step based on the following rules:
