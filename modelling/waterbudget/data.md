@@ -41,6 +41,7 @@ $$
 0 & \text{otherwise},
 \end{cases}
 $$
+
 $$
 \text{Snowfall}=
 \begin{cases}
@@ -51,7 +52,7 @@ $$
 
 An optimization routine is employed to determine $T_\text{crit}$ such that annual average snowfall is equal to annual average snowmelt to ensure minimal deviation from total precipitation. 
 
-### Atmospheric Yield
+### Sub-daily Snowmelt
 Furthermore, snowmelt, which is acquired at a daily timestep that represents the *"total of 24 per hour melt rates, 06:00 UTC-06:00 UTC ... integrated for the previous 24 hours, giving daily totals"* (NOHRSC, 2004), is disaggregated to a 6-hourly time step based on the following rules:
 
 1. If any timesteps has temperatures greater than 10°C, snowmelt is equally divided amongst them;
