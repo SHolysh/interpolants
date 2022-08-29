@@ -11,7 +11,7 @@ output: html_document
 # Introduction
 The [ORMGP](https://maps.oakridgeswater.ca/) maintains a current, continuous daily climatology dataset beginning 1901. The data are interpolated to [some 3,000 ~10km² sub-watersheds](https://owrc.github.io/interpolants/interpolation/subwatershed.html) and are made available through our [web portal](https://maps.oakridgeswater.ca/Html5Viewer/index.html?viewer=ORMGPP). 
 
-<iframe src="https://golang.oakridgeswater.ca/pages/subwatersheds.html" width="100%" height="400" scrolling="no" allowfullscreen></iframe>
+<iframe src="https://golang.oakridgeswater.ca/pages/swsmet.html" width="100%" height="400" scrolling="no" allowfullscreen></iframe>
 
 *2,813 ~10km² sub-watersheds delineated within the ORMGP jurisdiction with their topological relationships defined. In addition to climate data, these sub-watersheds have aggregated land use characteristics.*
 <br><br>
@@ -99,6 +99,44 @@ Further improvements, still at a ~10km resolution.
 
 #### CaPA-HRDPA (*2017—present*)
 The latest iteration of CaPA is the [High Resolution Deterministic Precipitation Analysis (CaPA-HRDPA)](https://eccc-msc.github.io/open-data/msc-data/nwp_hrdpa/readme_hrdpa_en/) refined to a ~2.5km resolution.
+
+
+
+### Missing Dates
+The CaPA RDPA products used do have periods of no data. Listed below are the dates found. Where no data are found, the API reports the [data interpolated from point locations](https://owrc.github.io/interpolants/interpolation/daily.html#meteorological-service-of-canada).
+
+#### CaPA-RDPA
+- 2001-12-30
+- 2001-12-31
+- 2002-01-01
+- 2006-04-27
+- 2006-04-30
+- 2006-07-10
+- 2008-04-15
+- 2019-09-26
+- 2019-09-27
+- 2019-10-25
+- 2020-03-16
+- 2020-03-17
+- 2020-04-21
+- 2020-04-22
+- 2020-10-01
+- 2020-10-02
+
+#### CaPA-HRDPA
+- 2019-12-14
+- 2019-12-15
+- 2019-12-16
+- 2019-12-17
+- 2021-01-01
+- 2022-01-01
+- 2022-06-20
+
+
+### Missing Locations
+At 2 locations, where the sub-watershed makes up the entirety of a small island, the Delft-FEWS interpolation scheme appears to overlook, and return a no-data value. When this occurres, the value given to nearby subwatersheds are adopted.
+
+
 
 
 
