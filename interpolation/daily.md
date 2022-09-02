@@ -68,7 +68,7 @@ The CaPA data are collected in their 6-hourly steps and are aggregated to daily 
 $$
 \text{Rainfall}=
 \begin{cases}
-\text{Precipitation}, & T>T_\text{crit}\\
+\text{Precipitation}, & \overline{T}>T_\text{crit}\\
 0 & \text{otherwise},
 \end{cases}
 $$
@@ -76,7 +76,7 @@ $$
 $$
 \text{Snowfall}=
 \begin{cases}
-\text{Precipitation}, & T\leq T_\text{crit}\\
+\text{Precipitation}, & \overline{T}\leq T_\text{crit}\\
 0 & \text{otherwise}.
 \end{cases}
 $$

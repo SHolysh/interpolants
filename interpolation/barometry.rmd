@@ -1,42 +1,17 @@
 ---
 title: Barometric interpolation
-author: M.Marchildon
-date: 2021-09-03
+author: M. Marchildon
+date: Last compiled `r format(Sys.time(),'%B %e, %Y')`
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 ```
 
 ## Summary
 
-A methodology for interpolating hourly measured atmospheric pressure to a square-kilometre grid is described here. The initial intent for this interpolated product is to provide an estimate of atmospheric pressure at an arbitrary location for barometric corrections to groundwater monitors.
-
-Even in the modest range of elevations found in the ORMGP jurisdiction (from Lake Ontario surface ~74 metres above sea level (masl) to just below 500 masl), atmospheric pressure can deviate up to 5 kPa.
-
-```{r baro, echo=FALSE}
-library(ggplot2)
-
-mult = 101.3
-dat = data.frame(x=c(75:500))
-dat$plow = sapply(dat$x, FUN = function(x) {mult*(1. - .0065*x/(273.15 - 20)) ** 5.255788})
-dat$phgh = sapply(dat$x, FUN = function(x) {mult*(1. - .0065*x/(273.15 + 30)) ** 5.255788})
-dat$pstn = sapply(dat$x, FUN = function(x) {mult*(1. - 2.25577E-5*x) ** 5.255788})
-
-cols <- c("standard temperature"="black","local temperature range"="black")
-ggplot(dat, aes(x)) +
-  theme(legend.title = element_blank(), legend.position = c(0.8, 0.8), legend.background = element_blank()) +
-  geom_ribbon(aes(ymin = plow, ymax = phgh, fill="local temperature range"), alpha=.4) +
-  # geom_line(aes(y=pstn,group=1,color="standard temperature")) +
-  labs(x="metres above sealevel (masl)", 
-       y="atmospheric pressure at elevation (kPa)", 
-       title="Barometric pressure with elevation \nwhen P=101.3 kPa at sea-level") +
-  # scale_color_manual(values = cols) +
-  scale_fill_manual(values = cols)
-```
-
-This plot is based on the barometric formula with reference temperatures ($T_b$) from -20 to 30°C (shaded band):
+Spatial Interpolation of hourly measured atmospheric pressure from a set of stations (points) to a regional grid requires correction for elevation. In the modest range of elevations found in the ORMGP jurisdiction (from Lake Ontario surface ~74 metres above sea level (masl) to just below 500 masl), atmospheric pressure can deviate up to 5 kPa. For instance, if the air pressure at Lake Ontario is greater than 100 kPa, given all else the same, the expected range in pressures can be predicted using the the barometric formula:
 
 $$
   P=P_b \cdot \left[\frac{T_b + L_b \cdot (h-h_b)}{T_b}\right]^{\frac{-g_0 \cdot M}{R^\cdot L_b}},
@@ -50,24 +25,70 @@ $$
 |    $L_0$ = -0.0065 K/m temperature lapse rate near earth's surface
 |    $R^{*}$ = 8.3144598 J/(mol·K) universal gas constant
 |    $g_{0}$ = 9.80665 m/s² gravitational acceleration
-|    $M$ = 0.0289644 kg/mol molar mass of Earth's air
-|    \
+|    $M$ = 0.0289644 kg/mol molar mass of Earth's air.
+|    \ 
+
+With reference temperatures ($T_b$) ranging from -20 to 30°C (shaded band), over our elevation range, the pressure deviation can be shown here:
+
+```{r baro, echo=FALSE}
+library(ggplot2)
+
+mult = 101.3
+dat = data.frame(x=c(75:500))
+dat$plow = sapply(dat$x, FUN = function(x) {mult*(1. - .0065*x/(273.15 - 20)) ** 5.255788})
+dat$phgh = sapply(dat$x, FUN = function(x) {mult*(1. - .0065*x/(273.15 + 30)) ** 5.255788})
+dat$pstn = sapply(dat$x, FUN = function(x) {mult*(1. - 2.25577E-5*x) ** 5.255788})
+
+cols <- c("local temperature range (-20 to 30°C)"="black")
+ggplot(dat, aes(x)) +
+  theme(legend.title = element_blank(), legend.position = c(0.8, 0.8), legend.background = element_blank()) +
+  geom_ribbon(aes(ymin = plow, ymax = phgh, fill="local temperature range (-20 to 30°C)"), alpha=.4) +
+  # geom_line(aes(y=pstn,group=1,color="standard temperature")) +
+  labs(x="metres above sealevel (masl)", 
+       y="atmospheric pressure at elevation (kPa)", 
+       title="Barometric pressure with elevation (given 101.3 kPa at sea-level)") +
+  # scale_color_manual(values = cols) +
+  scale_fill_manual(values = cols) +
+  coord_flip()
+```
+
+
+### Intent
+
+The initial intent for this interpolated product is to provide an estimate of atmospheric pressure at arbitrary locations within our jurisdiction to test is capability for barometric corrections to groundwater monitors.
+
+
+
+
   
 ## Data Correction
 
-Station data reporting hourly atmospheric pressures $P$ are first "corrected" to a reference elevation $h_b$, set here as the mean elevation of reporting weather stations at a given time step. With a reference temperature $T_b$ set to mean measured temperature, pressures are corrected to the reference elevation using the inverse of the barometric equation (note that the constants have been included):
+Station data reporting hourly atmospheric pressures $P$ are first "corrected" to a reference elevation $h_b$, set here as the median elevation of reporting weather stations at a given time step. 
+
+```
+def referenceTemperature(ta, elev):
+    msk = ~np.ma.masked_invalid(ta).mask
+    tb = np.median(ta[msk]) + 273.15
+    zb = np.median(elev[msk])
+    if np.isnan(tb) or np.isnan(zb):
+        tb = 288.16 # Sea level standard temperature
+        zb = 0.0
+    return tb, zb
+```
+
+With a reference temperature $T_b$ set to median measured temperature, pressures are corrected to the reference elevation using the inverse of the barometric equation (note that the constants have been included):
 
 $$
   P_b = P\cdot \left[1-0.0065 \frac{h-h_b}{T_b} \right]^{-5.26}.
 $$
 
-These "reference pressures" are then spatially interpolated to a grid using the nearest neighbour strategy and re-cast to their proper (DEM) elevation by:
+These "reference pressures" are then spatially interpolated to a grid or a set of points and then re-cast to their elevations by:
 
 $$
   P_z = P_b\cdot \left[1-0.0065 \frac{z-h_b}{T_b} \right]^{5.26},
 $$
 
-where $P_z$ is the pressure interpolated to DEM cell of elevation $z$.
+where $P_z$ is the pressure interpolated to cell/point of elevation $z$.
 
 
 ## Results
