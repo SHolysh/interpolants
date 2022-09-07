@@ -15,13 +15,13 @@ output: html_document
 * Ground surface elevations were collected from the 2006 version of the [Provincial (Ministry of Natural Resources) Digital Elevation Model (DEM)](https://geohub.lio.gov.on.ca/maps/mnrf::provincial-digital-elevation-model-pdem/about). This is a 10x10m² DEM derived from 1:10,000 scale OBM base mapping based on photogrammetic elevation points and 5m contours where the photogrammetic elevation points did not exist.
 
 
-# Timeseries Data
+# Timeseries Data (Climate and Surface Water)
 
 ## Web Data Scrapers
 
-On a nightly basis, scheduled tasks are used to automatically download and insert new data into the [ORMGP database](https://owrc.github.io/database-manual/Contents/TOC.html), a process called ["web scraping"](https://en.wikipedia.org/wiki/Web_scraping). So, in addition to hydrogeologic information, the database maintains a realtime hydrometeorological dataset at the **daily** time scale. This means that, for the most part, information scraped below do not enter the database as they are sub-daily resolution. Rather, the higher-resolution data, including the gridded data, are maintained running [Delft-FEWS](https://oss.deltares.nl/web/delft-fews/about-delft-fews) on a dedicated server.
+On a nightly basis, scheduled tasks are used to automatically download and insert new data into the [ORMGP database](https://owrc.github.io/database-manual/Contents/TOC.html), a process called ["web scraping"](https://en.wikipedia.org/wiki/Web_scraping). So, in addition to hydrogeologic information, the database maintains a realtime hydrometeorological dataset at the **daily** time scale. This means that, for the most part, information scraped below does not enter the database as it is of a sub-daily resolution. Rather, the higher-resolution data, including the gridded data, are maintained running [Delft-FEWS](https://oss.deltares.nl/web/delft-fews/about-delft-fews) on a dedicated server.
 
-The objective is to maintain a **daily** hydrometeorological dataset spatially distributed over the 30,000km² ORMGP management area, going back at least a century.  Data collected are "near" realtime in that they are what is reported when the scheduled task was run (the night prior). The web tools we maintain and numerical models we archive depend on this dataset.
+The objective is to maintain a **daily** hydrometeorological dataset spatially distributed over the 30,000km² ORMGP management area, going back at least a century.  Data collected are "near" realtime in that they are what is reported when the scheduled task was run (the night prior). Many of the web tools maintained and numerical models that are archived depend on this dataset.
 
 
 ### Current data sources
@@ -50,7 +50,7 @@ Below is a list data sources used in deriving many of the interpolation products
 
 ## Partners' data
 
-A number of our partners maintain internal databases. Attempts are being made to integrate these sources to our workflow without the need for data duplication through API setup on the partners' end. This work is in progress and so far ties have been made to the following:
+A number of our partners maintain internal databases. Attempts are being made to integrate these sources to our workflow without the need for data duplication through API setup on the partners' end. This work is in progress, to date API linkages have been made to the following agencies:
 
 * TRCA
 * CVC
